@@ -1,0 +1,244 @@
+<!-- 所见 -->
+<!-- 问男女头部切换 -->
+<view class="header">
+   <view class="swiper-tab">
+    <view ><text class="swiper-tab-item {{currentTab==0?'active':''}}" data-current="0" bindtap="clickTab">关注</text></view>
+    <view><text class="swiper-tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="clickTab">推荐</text></view>
+    <view><text class="swiper-tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="clickTab">最新</text></view>
+      <view class="putQue">
+      <navigator url="../putQuest/putQuest">
+        <image src="../../images/putQue.png"></image>
+      </navigator>
+    </view>
+  </view>
+<!-- 切换内容 -->
+  <!-- 关注页 -->
+  <view class = "tab1 {{currentTab == 0 ? 'show':'hidden'}}" >
+  
+    <view class="userData">
+      <van-row>
+        <van-col span="4" class="touxiang"> <image src="{{subjects[0].images.large}}"></image> </van-col>
+        <van-col span="7" class="userName"> <text>{{renwu.aka[0]}}</text></van-col>
+        <van-col span="12" class="vip"> <image src="../../images/vipbg.png"></image> </van-col>
+      </van-row>
+      <!-- 所见内容 -->
+      <van-row>
+        <van-col offset="4" span="17" class="wenben"> <text>{{renwu.pubdates}}</text> </van-col>
+      </van-row>
+      
+        <view class="questImgs" >
+          <view class="questImg" wx:for="{{subjects}}" wx:if="{{index>0&&index<4}}"><image src="{{item.images.large}}"></image></view>
+        </view>
+      
+      <!-- 时间 -->
+      <view class="buju1">
+      <van-row><van-col offset="4" span="14" class="time"> <text>{{logs}}</text> </van-col></van-row>
+      </view>
+      <!-- 评论，点赞，转发 -->
+      <view class="buju">
+        <van-row class="questBtnAll">
+          <van-col span="8" class="questBtn">
+            
+           <view class="questBtn1" bindtap="btPinglun">
+              <image src="../../images/pinglun.png"></image> <text >评论</text>
+            </view>
+            
+          </van-col> 
+          <!-- 点赞 -->
+          <van-col span="8"   class="questBtn">
+            <view class="questBtn1" bindtap="dianzan">
+              <image src="../../images/like-1.png"></image>
+              <text  wx:if="{{ bian }}"> {{ zan }}</text>  
+              <text  wx:else> {{ text }}</text>
+            </view>
+          </van-col>
+          <!-- 点赞end -->
+          <van-col span="8" class="questBtn">
+            <view class="questBtn1" bindtap="dianji">
+              <image src="../../images/zhuanfa.png"></image>
+              <text >转发</text>
+            </view>
+          </van-col>
+        </van-row>
+         <input bindinput="xiePingLun" class="pinglunIpt{{showView?'show':''}}" placeholder="　发表评论" bindconfirm="confirm" value="{{inputValue}}"></input>
+      </view>
+       <view class="pinglun" wx:for="{{bangdanCont}}" >
+        <view class="userPing">
+          <image src="{{item.images.small}}"></image>
+          <text>{{item.title}}</text>
+        </view>
+        <view class="pinglunS"><text>{{item.pubdates}}</text></view>
+      </view>
+      <!-- <view class="pinglun" wx:for="{{bangdanCont}}">
+         <text>{{item.title}}:</text>
+        <text>{{item.pubdates}}</text>
+      </view> -->
+      <view>
+        
+      </view>
+      <view class="divLine"></view>
+      <!-- 转发内容 -->
+      <van-popup show="{{ show }}" bind:close="onClose" position="bottom">
+        <view class="zhuanfaBtn">
+          <button open-type="share">转发</button>
+        </view>
+      </van-popup>
+      <!-- 转发内容end -->
+    </view>
+  </view>
+<!-- 关注页结束 -->
+
+
+  <!-- 推荐 -->
+  <view class = "tab2 {{currentTab == 1 ? 'show':'hidden'}}" >
+ <view class="userData">
+      <van-row>
+        <van-col span="4" class="touxiang"> <image src="{{subjects[0].images.large}}"></image> </van-col>
+        <van-col span="7" class="userName"> <text>{{renwu.aka[0]}}</text></van-col>
+        <van-col span="12" class="vip"> <image src="../../images/vipbg.png"></image> </van-col>
+      </van-row>
+      <!-- 所见内容 -->
+      <van-row>
+        <van-col offset="4" span="17" class="wenben"> <text>{{renwu.pubdates}}</text> </van-col>
+      </van-row>
+      
+        <view class="questImgs" >
+          <view class="questImg" wx:for="{{subjects}}" wx:if="{{index>0&&index<4}}"><image src="{{item.images.large}}"></image></view>
+        </view>
+      
+      <!-- 时间 -->
+      <view class="buju1">
+      <van-row><van-col offset="4" span="14" class="time"> <text>{{logs}}</text> </van-col></van-row>
+      </view>
+      <!-- 评论，点赞，转发 -->
+      <view class="buju">
+        <van-row class="questBtnAll">
+          <van-col span="8" class="questBtn">
+            
+           <view class="questBtn1" bindtap="btPinglun">
+              <image src="../../images/pinglun.png"></image> <text >评论</text>
+            </view>
+            
+          </van-col> 
+          <!-- 点赞 -->
+          <van-col span="8"   class="questBtn">
+            <view class="questBtn1" bindtap="dianzan">
+              <image src="../../images/like-1.png"></image>
+              <text  wx:if="{{ bian }}"> {{ zan }}</text>  
+              <text  wx:else> {{ text }}</text>
+            </view>
+          </van-col>
+          <!-- 点赞end -->
+          <van-col span="8" class="questBtn">
+            <view class="questBtn1" bindtap="dianji">
+              <image src="../../images/zhuanfa.png"></image>
+              <text >转发</text>
+            </view>
+          </van-col>
+        </van-row>
+         <input bindinput="xiePingLun" class="pinglunIpt{{showView?'show':''}}" placeholder="　发表评论" bindconfirm="confirm" value="{{inputValue}}"></input>
+      </view>
+       <view class="pinglun" wx:for="{{bangdanCont}}" >
+        <view class="userPing">
+          <image src="{{item.images.small}}"></image>
+          <text>{{item.title}}</text>
+        </view>
+        <view class="pinglunS"><text>{{item.pubdates}}</text></view>
+      </view>
+      <!-- <view class="pinglun" wx:for="{{bangdanCont}}">
+         <text>{{item.title}}:</text>
+        <text>{{item.pubdates}}</text>
+      </view> -->
+      <view>
+        
+      </view>
+      <view class="divLine"></view>
+      <!-- 转发内容 -->
+      <van-popup show="{{ show }}" bind:close="onClose" position="bottom">
+        <view class="zhuanfaBtn">
+          <button open-type="share">转发</button>
+        </view>
+      </van-popup>
+      <!-- 转发内容end -->
+    </view>
+  </view>
+<!-- 推荐页结束 -->
+
+
+  <!--最新 -->
+  <view class = "tab3 {{currentTab == 2 ? 'show':'hidden'}}" >
+<view class="userData">
+      <van-row>
+        <van-col span="4" class="touxiang"> <image src="{{subjects[0].images.large}}"></image> </van-col>
+        <van-col span="7" class="userName"> <text>{{renwu.aka[0]}}</text></van-col>
+        <van-col span="12" class="vip"> <image src="../../images/vipbg.png"></image> </van-col>
+      </van-row>
+      <!-- 所见内容 -->
+      <van-row>
+        <van-col offset="4" span="17" class="wenben"> <text>{{renwu.pubdates}}</text> </van-col>
+      </van-row>
+      
+        <view class="questImgs" >
+          <view class="questImg" wx:for="{{subjects}}" wx:if="{{index>0&&index<4}}"><image src="{{item.images.large}}"></image></view>
+        </view>
+      
+      <!-- 时间 -->
+      <view class="buju1">
+      <van-row><van-col offset="4" span="14" class="time"> <text>{{logs}}</text> </van-col></van-row>
+      </view>
+      <!-- 评论，点赞，转发 -->
+      <view class="buju">
+        <van-row class="questBtnAll">
+          <van-col span="8" class="questBtn">
+            
+           <view class="questBtn1" bindtap="btPinglun">
+              <image src="../../images/pinglun.png"></image> <text >评论</text>
+            </view>
+            
+          </van-col> 
+          <!-- 点赞 -->
+          <van-col span="8"   class="questBtn">
+            <view class="questBtn1" bindtap="dianzan">
+              <image src="../../images/like-1.png"></image>
+              <text  wx:if="{{ bian }}"> {{ zan }}</text>  
+              <text  wx:else> {{ text }}</text>
+            </view>
+          </van-col>
+          <!-- 点赞end -->
+          <van-col span="8" class="questBtn">
+            <view class="questBtn1" bindtap="dianji">
+              <image src="../../images/zhuanfa.png"></image>
+              <text >转发</text>
+            </view>
+          </van-col>
+        </van-row>
+         <input bindinput="xiePingLun" class="pinglunIpt{{showView?'show':''}}" placeholder="　发表评论" bindconfirm="confirm" value="{{inputValue}}"></input>
+      </view>
+       <view class="pinglun" wx:for="{{bangdanCont}}" >
+        <view class="userPing">
+          <image src="{{item.images.small}}"></image>
+          <text>{{item.title}}</text>
+        </view>
+        <view class="pinglunS"><text>{{item.pubdates}}</text></view>
+      </view>
+   
+      <view>
+        
+      </view>
+      <view class="divLine"></view>
+      <!-- 转发内容 -->
+      <van-popup show="{{ show }}" bind:close="onClose" position="bottom">
+        <view class="zhuanfaBtn">
+          <button open-type="share">转发</button>
+        </view>
+      </van-popup>
+      <!-- 转发内容end -->
+    </view>
+  </view>
+  <!-- 最新页结束 -->
+
+</view>
+
+
+
+

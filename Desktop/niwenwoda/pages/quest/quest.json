@@ -1,0 +1,11 @@
+{
+  "navigationBarTitleText": "所见",
+  "usingComponents": {
+    "van-button": "../../utils/dist/button/index",
+    "van-icon": "../../utils/dist/icon/index",
+    "van-row": "../../utils/dist/row/index",
+    "van-col": "../../utils/dist/col/index",
+    "van-popup": "../../utils/dist/popup/index",
+    "van-field": "../../utils/dist/field/index"
+  }
+}
